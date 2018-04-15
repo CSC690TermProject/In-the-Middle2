@@ -18,6 +18,9 @@
 		B7DB064120805D490054F285 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7DB063F20805D490054F285 /* LaunchScreen.storyboard */; };
 		B7DB064C20805D490054F285 /* InTheMiddle2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DB064B20805D490054F285 /* InTheMiddle2Tests.swift */; };
 		B7DB065720805D490054F285 /* InTheMiddle2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DB065620805D490054F285 /* InTheMiddle2UITests.swift */; };
+		B7E6CAAF208297BB00120A79 /* modernminimal.json in Resources */ = {isa = PBXBuildFile; fileRef = B7E6CAAE208297BB00120A79 /* modernminimal.json */; };
+		B7E6CAB0208297BB00120A79 /* modernminimal.json in Resources */ = {isa = PBXBuildFile; fileRef = B7E6CAAE208297BB00120A79 /* modernminimal.json */; };
+		B7E6CAB1208297BB00120A79 /* modernminimal.json in Resources */ = {isa = PBXBuildFile; fileRef = B7E6CAAE208297BB00120A79 /* modernminimal.json */; };
 		CC107CB4560CAC388DFAAF06 /* Pods_InTheMiddle2_InTheMiddle2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D08FA893689F8AC2EFB7C743 /* Pods_InTheMiddle2_InTheMiddle2Tests.framework */; };
 		ED993D0F5ECD6B674BB6862A /* Pods_InTheMiddle2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD578E7BD0F6DE655DA7DCC6 /* Pods_InTheMiddle2.framework */; };
 /* End PBXBuildFile section */
@@ -62,6 +65,7 @@
 		B7DB065220805D490054F285 /* InTheMiddle2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InTheMiddle2UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7DB065620805D490054F285 /* InTheMiddle2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InTheMiddle2UITests.swift; sourceTree = "<group>"; };
 		B7DB065820805D490054F285 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B7E6CAAE208297BB00120A79 /* modernminimal.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = modernminimal.json; sourceTree = "<group>"; };
 		C1E66156FCB83F16B52CFEC4 /* Pods-InTheMiddle2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InTheMiddle2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InTheMiddle2/Pods-InTheMiddle2.debug.xcconfig"; sourceTree = "<group>"; };
 		D08FA893689F8AC2EFB7C743 /* Pods_InTheMiddle2_InTheMiddle2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InTheMiddle2_InTheMiddle2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E55A8529285FEDF50F9F7416 /* Pods-InTheMiddle2UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InTheMiddle2UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InTheMiddle2UITests/Pods-InTheMiddle2UITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -159,6 +163,7 @@
 				B7DB063520805D490054F285 /* ViewController.swift */,
 				B7DB063720805D490054F285 /* Main.storyboard */,
 				B7DB063D20805D490054F285 /* Assets.xcassets */,
+				B7E6CAAE208297BB00120A79 /* modernminimal.json */,
 				B7DB063F20805D490054F285 /* LaunchScreen.storyboard */,
 				B7DB064220805D490054F285 /* Info.plist */,
 				B7DB063A20805D490054F285 /* InTheMiddle2.xcdatamodeld */,
@@ -299,6 +304,7 @@
 			files = (
 				B7DB064120805D490054F285 /* LaunchScreen.storyboard in Resources */,
 				B7DB063E20805D490054F285 /* Assets.xcassets in Resources */,
+				B7E6CAAF208297BB00120A79 /* modernminimal.json in Resources */,
 				B7DB063920805D490054F285 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -307,6 +313,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7E6CAB0208297BB00120A79 /* modernminimal.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,6 +321,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7E6CAB1208297BB00120A79 /* modernminimal.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
