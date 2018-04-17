@@ -1,6 +1,9 @@
 # Dine in the Middle
 Term Project for CSC690, App Development (iOS): a Swift app that finds the median point between two distances and displays a TableView of restaurants by top rated reviews.
 
+#### Mock-ups:
+Screen Shot 2018-04-17 at 1.13.24 PM
+
 #### Must Have Feautures:
 1) User shall type two locations and then the median point is marked.
 2) A TableView shall appear that lists restaurants by top rated Yelp reviews. User can navigate back to the Map view using a back button.
