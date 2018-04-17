@@ -2,6 +2,7 @@
 Term Project for CSC690, App Development (iOS): a Swift app that finds the median point between two locations and displays a TableView of restaurants by top rated reviews.
 
 #### Mock-ups:
+![alt text](https://preview.ibb.co/fttWsS/IMG_4917.jpg)
 ![alt text](https://image.ibb.co/iT47z7/Screen_Shot_2018_04_17_at_1_13_24_PM.png)
 
 #### Must Have Feautures:
