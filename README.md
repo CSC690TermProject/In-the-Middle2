@@ -3,6 +3,14 @@ Term Project for CSC690, App Development (iOS): a Swift app that finds the media
 
 #### Mock-ups:
 ![alt text](https://preview.ibb.co/fttWsS/IMG_4917.jpg)
+##### Map View:
+- Contains two text fields to contain locations A and B.
+- 'Dine' button will mark the the median point on the map then take them to the Table View.
+- Menu Bar item will be used to represent the nice to have features.
+##### Table View:
+- Contains cells that has information about restaurants around the median point.
+- 'Map' button will take them back to the Map View.
+
 ![alt text](https://image.ibb.co/iT47z7/Screen_Shot_2018_04_17_at_1_13_24_PM.png)
 
 #### Must Have Feautures:
