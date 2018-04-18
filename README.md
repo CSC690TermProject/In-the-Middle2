@@ -5,7 +5,7 @@ Term Project for CSC690, App Development (iOS): a Swift app that finds the media
 ![alt text](https://preview.ibb.co/fttWsS/IMG_4917.jpg)
 ##### Map View:
 - Contains two text fields to contain locations A and B.
-- When the 'Dine' button is pressed, it will take in the coordinates of the two locations and use Google's interpolate function to find the median point. The median point will be marked, then display the Table View.
+- When the 'Dine' button is pressed, it will take in the coordinates of the two locations and use Google's interpolate function to find the median point. The median point will be marked, then display a Table View of restaurants around the median point.
 - Menu Bar item will be used to represent the nice to have features.
 ##### Table View:
 - Contains cells that has information about restaurants around the median point.
