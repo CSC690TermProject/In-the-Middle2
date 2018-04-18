@@ -1,5 +1,5 @@
 # Dine in the Middle
-Term Project for CSC690, App Development (iOS): a Swift app that finds the median point between two locations and displays a Table View of restaurants by top rated reviews.
+Term Project for CSC690 (Interactive Multimedia App Development (iOS)): a Swift app that finds the median point between two locations and displays a Table View of restaurants by top rated reviews.
 
 #### Mock-up/Wireframe:
 ![alt text](https://preview.ibb.co/fttWsS/IMG_4917.jpg)
