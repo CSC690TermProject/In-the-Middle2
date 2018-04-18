@@ -5,7 +5,7 @@ Term Project for CSC690 (Interactive Multimedia App Development (iOS)): a Swift 
 ![alt text](https://preview.ibb.co/fttWsS/IMG_4917.jpg)
 ##### Map View:
 - Contains two text fields to contain locations A and B.
-- When the 'Dine' button is pressed, it will take in the coordinates of the two locations and use Google's interpolate function to find the median point. The median point will be marked, then display a Table View of restaurants around the median point.
+- When the 'Dine' button is pressed, it will take in the coordinates of the two locations as arguments and use Google's interpolate function to find the median point. The median point will be marked, then display a Table View of restaurants around the median point.
 - Menu Bar item will be used to represent the nice to have features.
 ##### Table View:
 - Contains cells that has information about restaurants around the median point.
@@ -24,10 +24,10 @@ Term Project for CSC690 (Interactive Multimedia App Development (iOS)): a Swift 
 4) Everytime the map opens, it would open to the user's current location, (as of 4/14/18, the Bay Area's coordinates are hardcoded in).
 
 #### Tasks:
-1) Display location A and B textfields and 'Dine' button asset over GoogleMaps view.
+1) Display location A and B textfields and 'Dine' button asset over GoogleMaps View.
 2) Ask for user location permission.
 3) Implement method that takes in locations A and B and returns the median distance.
 4) Implement Yelp API.
-5) Make Yelp TableView with button to go back to Map view.
+5) Make Yelp TableView with button to go back to Map View.
 ##### If there's time:
-6) Make circular thumbnails of three restaurants that appear over the median point in the Map view.
+6) Make circular thumbnails of three restaurants that appear over the median point in the Map View.
