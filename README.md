@@ -1,11 +1,11 @@
 # Dine in the Middle
-Term Project for CSC690, App Development (iOS): a Swift app that finds the median point between two locations and displays a TableView of restaurants by top rated reviews.
+Term Project for CSC690, App Development (iOS): a Swift app that finds the median point between two locations and displays a Table View of restaurants by top rated reviews.
 
 #### Mock-up/Wireframe:
 ![alt text](https://preview.ibb.co/fttWsS/IMG_4917.jpg)
 ##### Map View:
 - Contains two text fields to contain locations A and B.
-- 'Dine' button will mark the the median point on the map then take them to the Table View.
+- When the 'Dine' button is pressed, it will take in the coordinates of the two locations and use Google's interpolate function to find the median point. The median point will be marked, then display the Table View.
 - Menu Bar item will be used to represent the nice to have features.
 ##### Table View:
 - Contains cells that has information about restaurants around the median point.
