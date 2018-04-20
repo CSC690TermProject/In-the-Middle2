@@ -8,6 +8,7 @@
 
 import UIKit
 import GoogleMaps
+import GooglePlaces
 
 enum Location {
     case locationA
@@ -96,9 +97,34 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
         print("Error to get location: \(error)")
     }
     
-//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//        let location = locations.last
-//    }
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let location = locations.last
+        
+        let locationSFSU = CLLocation(latitude: 37.722185, longitude: -122.478198)
+        
+        createMarker(titleMarker: "San Francisco State University", iconMarker: UIImage(named: "marker_gray")!, latitude: locationSFSU.coordinate.latitude, longitude: locationSFSU.coordinate.longitude)
+        createMarker(titleMarker: "Berkeley", iconMarker: UIImage(named: "marker_gray")!, latitude: (location?.coordinate.latitude)!, longitude: (location?.coordinate.longitude)!)
+        
+//        self.googleMaps?.animate(to: camera)
+        self.locationManager.stopUpdatingLocation()
+        
+        //        let locationB = CLLocationCoordinate2DMake(37.6879, -122.4702)
+        //        let markerB = GMSMarker(position: locationB)
+        //        markerB.title = "Berkeley"
+        //        markerB.map = mapView
+    }
+    
+    func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
+        googleMapsView.isMyLocationEnabled = true
+    }
+    
+    func  mapView(_ mapView: GMSMapView, willMove gesture: Bool){
+        googleMapsView.isMyLocationEnabled = true
+        
+        if (gesture) {
+            mapView.selectedMarker = nil
+        }
+    }
     
     @objc func dinePressed() {
         print("yay u did it")
