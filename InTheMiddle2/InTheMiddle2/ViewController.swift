@@ -18,16 +18,16 @@ enum Location {
 class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate{
 
     @IBOutlet weak var googleMapsContainer: UIView!
-//    @IBOutlet weak var locationA: UITextField!
-//    @IBOutlet weak var locationB: UITextField!
     
     var locationA : UITextField?
     var locationB : UITextField?
     
     var locationManager = CLLocationManager()
     var locationSelected = Location.locationA
-    var locationStart = CLLocation()
-    var locationEnd = CLLocation()
+    
+    var locationStart = CLLocationCoordinate2D()
+    var locationEnd = CLLocationCoordinate2D()
+    var locationMid = CLLocationCoordinate2D()
     
     var googleMapsView: GMSMapView!
     var minimalStyle: GMSMapStyle!
@@ -56,27 +56,28 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
         self.googleMapsView?.settings.myLocationButton = true
         self.googleMapsView?.settings.zoomGestures = true
         
-        //DINE button properties
+        //FIND button properties
         let dineButton = UIButton(frame: CGRect(x: 250, y: 600, width: 112.5, height: 56.25))
         dineButton.backgroundColor = .gray
-        dineButton.setTitle("DINE", for: .normal)
+        dineButton.setTitle("FIND", for: .normal)
         dineButton.titleLabel?.font =  UIFont(name: "AvenirNextCondensed-DemiBold", size: 40)
         dineButton.titleLabel?.textColor = UIColor(red: 204/255, green: 255/255, blue: 204/255, alpha: 1.0)
-        dineButton.addTarget(self, action:#selector(self.dinePressed), for: .touchUpInside)
+        dineButton.addTarget(self, action:#selector(self.findButtonPressed), for: .touchUpInside)
         self.view.addSubview(dineButton)
 
         //location field properties
-        self.locationA = UITextField(frame: CGRect(x: 20, y: 490, width: 300, height: 40))
+        self.locationA = UITextField(frame: CGRect(x: 20, y: 470, width: 300, height: 40))
         locationA?.placeholder = "A"
         locationA?.font = UIFont(name: "Avenir-Book", size: 25)
         locationA?.borderStyle = UITextBorderStyle.roundedRect
         locationA?.addTarget(self, action:#selector(self.openLocationA(_:)), for: .touchUpInside)
         self.view.addSubview(locationA!)
         
-        self.locationB = UITextField(frame: CGRect(x: 20, y: 545, width: 300, height: 40))
+        self.locationB = UITextField(frame: CGRect(x: 20, y: 525, width: 300, height: 40))
         locationB?.placeholder = "B"
         locationB?.font = UIFont(name: "Avenir-Book", size: 25)
         locationB?.borderStyle = UITextBorderStyle.roundedRect
+        locationB?.addTarget(self, action:#selector(self.openLocationB(_:)), for: .touchUpInside)
         self.view.addSubview(locationB!)
         
         //bar properties
@@ -169,18 +170,20 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
         self.present(autocompleteController, animated: true, completion: nil)
     }
     
-//    @IBAction func dineButtonPressed(_ sender: UIButton) {
-//        self.calculateMiddlePoint()
-//    }
-    
-//    func calculateMiddlePoint(startLocation: CLLocation, endLocation: CLLocation) -> CLLocation {
-//
-//    }
-    
-    
-    @objc func dinePressed() {
-        print("yay u did it")
+    @IBAction func findButtonPressed(_ sender: UIButton) {
+        locationMid = GMSGeometryInterpolate(locationStart, locationEnd, 0.5)
+        print("\(locationMid.latitude), \(locationMid.longitude)")
+//        createMarker(titleMarker: "Midway Point", iconMarker: UIImage(named: "")!, latitude: locationMid.latitude, longitude: locationMid.longitude)
     }
+    
+//    func calculateMiddlePoint(startLocation: CLLocationCoordinate2D, endLocation: CLLocationCoordinate2D) -> CLLocation {
+//        return GMSGeometryInterpolate(startLocation, endLocation, 0.5)
+//    }
+    
+    
+//    @objc func dinePressed() {
+//        print("yay u did it")
+//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -200,12 +203,12 @@ extension ViewController: GMSAutocompleteViewControllerDelegate {
         let camera = GMSCameraPosition.camera(withLatitude: place.coordinate.latitude, longitude: place.coordinate.longitude, zoom: 10.25)
         
         if locationSelected == .locationA {
-            locationA?.text = "\(place.coordinate.latitude), \(place.coordinate.longitude)"
-            locationStart = CLLocation(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
+            locationA?.text =  "\(place.name)" //"\(place.coordinate.latitude), \(place.coordinate.longitude)"
+            locationStart = CLLocationCoordinate2D(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
             //createLocationMarker()
         } else {
-            locationB?.text = "\(place.coordinate.latitude), \(place.coordinate.longitude)"
-            locationEnd = CLLocation(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
+            locationB?.text = "\(place.name)" //"\(place.coordinate.latitude), \(place.coordinate.longitude)"
+            locationEnd = CLLocationCoordinate2D(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
             //createLocationMarker()
         }
         
