@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  InTheMiddle2
+//  InTheMiddle
 //
 //  Created by Justin Abarquez on 4/12/18.
 //  Copyright © 2018 Justin Abarquez. All rights reserved.
@@ -15,16 +15,15 @@ enum Location {
     case locationB
 }
 
-class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate{
-
-    @IBOutlet weak var googleMapsContainer: UIView!
+class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate {
     
     var locationA : UITextField?
     var locationB : UITextField?
     
+    //create LocationManager object
     var locationManager = CLLocationManager()
-    var locationSelected = Location.locationA
     
+    var locationSelected = Location.locationA
     var locationStart = CLLocationCoordinate2D()
     var locationEnd = CLLocationCoordinate2D()
     var locationMid = CLLocationCoordinate2D()
@@ -36,17 +35,17 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        locationManager = CLLocationManager()
+        //set up LocationManager
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest  
         locationManager.startMonitoringSignificantLocationChanges()
 
         //map initialization
         let camera = GMSCameraPosition.camera(withLatitude: 37.74, longitude: -122.478, zoom: 10.25)
-        let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
-        view = mapView
+        let mapView = GMSMapView.map(withFrame: self.view.bounds, camera: camera)
+        self.view = mapView
         minimalStyle = try! GMSMapStyle.init(contentsOfFileURL: Bundle.main.url(forResource: "modernminimal", withExtension: "json")!)
         mapView.mapStyle = minimalStyle
         
@@ -55,6 +54,19 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
         self.googleMapsView?.isMyLocationEnabled = true
         self.googleMapsView?.settings.myLocationButton = true
         self.googleMapsView?.settings.zoomGestures = true
+//        self.view.addSubview(googleMapsView)
+        
+//        let camera = GMSCameraPosition.camera(withLatitude: 37.74, longitude: -122.478, zoom: 10.25)
+//        let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
+//        minimalStyle = try! GMSMapStyle.init(contentsOfFileURL: Bundle.main.url(forResource: "modernminimal", withExtension: "json")!)
+//        mapView.mapStyle = minimalStyle
+//        mapView.camera = camera
+//        mapView.delegate = self
+//        mapView.isMyLocationEnabled = true
+//        mapView.settings.myLocationButton = true
+//        mapView.settings.zoomGestures = true
+//        view = mapView
+//        view.addSubview(mapView)
         
         //FIND button properties
         let dineButton = UIButton(frame: CGRect(x: 250, y: 600, width: 112.5, height: 56.25))
@@ -71,6 +83,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
         locationA?.font = UIFont(name: "Avenir-Book", size: 25)
         locationA?.borderStyle = UITextBorderStyle.roundedRect
         locationA?.addTarget(self, action:#selector(self.openLocationA(_:)), for: .touchUpInside)
+        locationA?.alpha = 0.8
         self.view.addSubview(locationA!)
         
         self.locationB = UITextField(frame: CGRect(x: 20, y: 525, width: 300, height: 40))
@@ -78,6 +91,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
         locationB?.font = UIFont(name: "Avenir-Book", size: 25)
         locationB?.borderStyle = UITextBorderStyle.roundedRect
         locationB?.addTarget(self, action:#selector(self.openLocationB(_:)), for: .touchUpInside)
+        locationB?.alpha = 0.8
         self.view.addSubview(locationB!)
         
         //bar properties
@@ -89,28 +103,19 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
         let navigationTitleFont = UIFont(name: "AvenirNextCondensed-DemiBoldItalic",  size: 27)!
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.font: navigationTitleFont]
     }
-    
-    //creates a marker pin on the map
-    func createMarker(titleMarker: String, iconMarker: UIImage, latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
-        let marker =  GMSMarker()
-        marker.position = CLLocationCoordinate2DMake(latitude, longitude)
-        marker.title = titleMarker
-        marker.icon = iconMarker
-        marker.map = googleMapsView
-    }
-    
+
     //Location Manager delegates
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error){
         print("Error to get location: \(error)")
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let location = locations.last
-        
-        let locationSFSU = CLLocation(latitude: 37.722185, longitude: -122.478198)
-        
-        createMarker(titleMarker: "San Francisco State University", iconMarker: UIImage(named: "marker_gray")!, latitude: locationSFSU.coordinate.latitude, longitude: locationSFSU.coordinate.longitude)
-        createMarker(titleMarker: "Berkeley", iconMarker: UIImage(named: "marker_gray")!, latitude: (location?.coordinate.latitude)!, longitude: (location?.coordinate.longitude)!)
+//        let location = locations.last
+//
+//        let locationSFSU = CLLocation(latitude: 37.722185, longitude: -122.478198)
+//
+//        createMarker(titleMarker: "San Francisco State University", iconMarker: UIImage(named: "marker_gray")!, latitude: locationSFSU.coordinate.latitude, longitude: locationSFSU.coordinate.longitude)
+//        createMarker(titleMarker: "Berkeley", iconMarker: UIImage(named: "marker_gray")!, latitude: (location?.coordinate.latitude)!, longitude: (location?.coordinate.longitude)!)
         
 //        self.googleMaps?.animate(to: camera)
         self.locationManager.stopUpdatingLocation()
@@ -149,6 +154,15 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
         return false
     }
     
+    //creates a marker pin on the map
+    func createMarker(titleMarker: String, iconMarker: UIImage, latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
+        let marker =  GMSMarker()
+        marker.position = CLLocationCoordinate2DMake(latitude, longitude)
+        marker.title = titleMarker
+        marker.icon = iconMarker
+        marker.map = googleMapsView
+    }
+    
     @IBAction func openLocationA(_ sender: UIButton) {
         let autocompleteController = GMSAutocompleteViewController()
         autocompleteController.delegate = self
@@ -156,7 +170,6 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
         locationSelected = .locationA
         
         self.locationManager.stopUpdatingLocation()
-        
         self.present(autocompleteController, animated: true, completion: nil)
     }
     
@@ -172,14 +185,9 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
     
     @IBAction func findButtonPressed(_ sender: UIButton) {
         locationMid = GMSGeometryInterpolate(locationStart, locationEnd, 0.5)
-        print("\(locationMid.latitude), \(locationMid.longitude)")
+        print("The midway point is at coordinates: \(locationMid.latitude), \(locationMid.longitude).")
 //        createMarker(titleMarker: "Midway Point", iconMarker: UIImage(named: "")!, latitude: locationMid.latitude, longitude: locationMid.longitude)
     }
-    
-//    func calculateMiddlePoint(startLocation: CLLocationCoordinate2D, endLocation: CLLocationCoordinate2D) -> CLLocation {
-//        return GMSGeometryInterpolate(startLocation, endLocation, 0.5)
-//    }
-    
     
 //    @objc func dinePressed() {
 //        print("yay u did it")
@@ -199,7 +207,7 @@ extension ViewController: GMSAutocompleteViewControllerDelegate {
     }
     
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
-        //change map location
+        //change camera position
         let camera = GMSCameraPosition.camera(withLatitude: place.coordinate.latitude, longitude: place.coordinate.longitude, zoom: 10.25)
         
         if locationSelected == .locationA {
@@ -212,8 +220,9 @@ extension ViewController: GMSAutocompleteViewControllerDelegate {
             //createLocationMarker()
         }
         
+        //change camera view to entered location
         self.googleMapsView?.camera = camera
-//       self.googleMapsView?.animate(to: camera)
+        self.googleMapsView?.animate(to: camera)
         self.dismiss(animated: true, completion: nil)
     }
     

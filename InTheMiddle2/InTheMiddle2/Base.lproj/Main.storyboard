@@ -17,25 +17,10 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1U1-ca-tVb">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                            </view>
-                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="1U1-ca-tVb" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="6g0-Hi-rLL"/>
-                            <constraint firstItem="1U1-ca-tVb" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="LTf-13-EuK"/>
-                            <constraint firstAttribute="trailing" secondItem="1U1-ca-tVb" secondAttribute="trailing" id="Wsg-8e-tRb"/>
-                            <constraint firstItem="1U1-ca-tVb" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="uau-Gh-gAo"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="BuT-Sz-g01"/>
-                    <connections>
-                        <outlet property="googleMapsContainer" destination="1U1-ca-tVb" id="hsj-mq-r5K"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
