@@ -17,6 +17,8 @@ enum Location {
 
 class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate {
     
+    @IBOutlet weak var googleMapsView: GMSMapView!
+    
     var locationA : UITextField?
     var locationB : UITextField?
     
@@ -26,9 +28,12 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
     var locationSelected = Location.locationA
     var locationStart = CLLocationCoordinate2D()
     var locationEnd = CLLocationCoordinate2D()
-    var locationMid = CLLocationCoordinate2D()
     
-    var googleMapsView: GMSMapView!
+    var locationMid = CLLocationCoordinate2D()
+    var locationQuarter = CLLocationCoordinate2D()
+    var locationThreeQuarter = CLLocationCoordinate2D()
+    
+//    var googleMapsView: GMSMapView!
     var minimalStyle: GMSMapStyle!
     
     
@@ -44,16 +49,18 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
 
         //map initialization
         let camera = GMSCameraPosition.camera(withLatitude: 37.74, longitude: -122.478, zoom: 10.25)
-        let mapView = GMSMapView.map(withFrame: self.view.bounds, camera: camera)
-        self.view = mapView
+//        let mapView = GMSMapView.map(withFrame: self.view.bounds, camera: camera)
+//        self.view = mapView
         minimalStyle = try! GMSMapStyle.init(contentsOfFileURL: Bundle.main.url(forResource: "modernminimal", withExtension: "json")!)
-        mapView.mapStyle = minimalStyle
+        self.googleMapsView?.mapStyle = minimalStyle
         
         self.googleMapsView?.camera = camera
         self.googleMapsView?.delegate = self
+        self.view = googleMapsView
         self.googleMapsView?.isMyLocationEnabled = true
         self.googleMapsView?.settings.myLocationButton = true
         self.googleMapsView?.settings.zoomGestures = true
+        
 //        self.view.addSubview(googleMapsView)
         
 //        let camera = GMSCameraPosition.camera(withLatitude: 37.74, longitude: -122.478, zoom: 10.25)
@@ -79,7 +86,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
 
         //location field properties
         self.locationA = UITextField(frame: CGRect(x: 20, y: 470, width: 300, height: 40))
-        locationA?.placeholder = "A"
+        locationA?.placeholder = "Location A"
         locationA?.font = UIFont(name: "Avenir-Book", size: 25)
         locationA?.borderStyle = UITextBorderStyle.roundedRect
         locationA?.addTarget(self, action:#selector(self.openLocationA(_:)), for: .touchUpInside)
@@ -87,7 +94,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
         self.view.addSubview(locationA!)
         
         self.locationB = UITextField(frame: CGRect(x: 20, y: 525, width: 300, height: 40))
-        locationB?.placeholder = "B"
+        locationB?.placeholder = "Location B"
         locationB?.font = UIFont(name: "Avenir-Book", size: 25)
         locationB?.borderStyle = UITextBorderStyle.roundedRect
         locationB?.addTarget(self, action:#selector(self.openLocationB(_:)), for: .touchUpInside)
@@ -110,20 +117,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//        let location = locations.last
-//
-//        let locationSFSU = CLLocation(latitude: 37.722185, longitude: -122.478198)
-//
-//        createMarker(titleMarker: "San Francisco State University", iconMarker: UIImage(named: "marker_gray")!, latitude: locationSFSU.coordinate.latitude, longitude: locationSFSU.coordinate.longitude)
-//        createMarker(titleMarker: "Berkeley", iconMarker: UIImage(named: "marker_gray")!, latitude: (location?.coordinate.latitude)!, longitude: (location?.coordinate.longitude)!)
-        
-//        self.googleMaps?.animate(to: camera)
         self.locationManager.stopUpdatingLocation()
-        
-        //        let locationB = CLLocationCoordinate2DMake(37.6879, -122.4702)
-        //        let markerB = GMSMarker(position: locationB)
-        //        markerB.title = "Berkeley"
-        //        markerB.map = mapView
     }
     
     //GMSMapViewDelegate
@@ -154,15 +148,6 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
         return false
     }
     
-    //creates a marker pin on the map
-    func createMarker(titleMarker: String, iconMarker: UIImage, latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
-        let marker =  GMSMarker()
-        marker.position = CLLocationCoordinate2DMake(latitude, longitude)
-        marker.title = titleMarker
-        marker.icon = iconMarker
-        marker.map = googleMapsView
-    }
-    
     @IBAction func openLocationA(_ sender: UIButton) {
         let autocompleteController = GMSAutocompleteViewController()
         autocompleteController.delegate = self
@@ -184,14 +169,41 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
     }
     
     @IBAction func findButtonPressed(_ sender: UIButton) {
+        //stores the coordinates at the very middle
         locationMid = GMSGeometryInterpolate(locationStart, locationEnd, 0.5)
+        //stores the coordinates at the quarter mark ("Closer to You")
+        locationQuarter = GMSGeometryInterpolate(locationStart, locationEnd, 0.25)
+        //stores the coordinates at the three-quarter mark ("Closer to Them")
+        locationThreeQuarter = GMSGeometryInterpolate(locationStart, locationEnd, 0.75)
+        
+        //clear the map of all markers
+        googleMapsView.clear()
+        
+        //change camera view to Midway location
+        let camera = GMSCameraPosition.camera(withLatitude: locationMid.latitude, longitude: locationMid.longitude, zoom: 10.25)
+        self.googleMapsView?.animate(to: camera)
+        self.googleMapsView?.camera = camera
+        
+        //converting CLLocationCoordinate2D into CLLocation and storing the distances in miles between them (have to use another extension)
+        let distanceBetweenAandMid = locationStart.distanceTo(coordinate: locationMid)
+        let distanceBetweenAandQuarter = locationStart.distanceTo(coordinate: locationQuarter)
+        let distanceBetweenAandThreeQuarter = locationStart.distanceTo(coordinate: locationThreeQuarter)
+        
+        //create a marker for the Midway point
+        let markerMid = GMSMarker(position: locationMid)
+        markerMid.title = "Midway Point: \(distanceBetweenAandMid) miles away"
+        markerMid.map = googleMapsView
+        //create a marker for the Quarter point
+        let markerQuarter = GMSMarker(position: locationQuarter)
+        markerQuarter.title = "Closer to Me: \(distanceBetweenAandQuarter) miles away"
+        markerQuarter.map = googleMapsView
+        //create a marker for the Three-Quarter point
+        let markerThreeQuarter = GMSMarker(position: locationThreeQuarter)
+        markerThreeQuarter.title = "Closer to Them: \(distanceBetweenAandThreeQuarter) miles away"
+        markerThreeQuarter.map = googleMapsView
+        
         print("The midway point is at coordinates: \(locationMid.latitude), \(locationMid.longitude).")
-//        createMarker(titleMarker: "Midway Point", iconMarker: UIImage(named: "")!, latitude: locationMid.latitude, longitude: locationMid.longitude)
     }
-    
-//    @objc func dinePressed() {
-//        print("yay u did it")
-//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -213,16 +225,26 @@ extension ViewController: GMSAutocompleteViewControllerDelegate {
         if locationSelected == .locationA {
             locationA?.text =  "\(place.name)" //"\(place.coordinate.latitude), \(place.coordinate.longitude)"
             locationStart = CLLocationCoordinate2D(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
-            //createLocationMarker()
+            
+            //create a marker for Location A
+            let marker = GMSMarker(position: locationStart)
+            marker.title = "Location A"
+            marker.icon = GMSMarker.markerImage(with: .gray)
+            marker.map = googleMapsView
         } else {
             locationB?.text = "\(place.name)" //"\(place.coordinate.latitude), \(place.coordinate.longitude)"
             locationEnd = CLLocationCoordinate2D(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
-            //createLocationMarker()
+            
+            //create a marker for Location B
+            let marker = GMSMarker(position: locationEnd)
+            marker.title = "Location B"
+            marker.icon = GMSMarker.markerImage(with: .gray)
+            marker.map = googleMapsView
         }
         
         //change camera view to entered location
-        self.googleMapsView?.camera = camera
         self.googleMapsView?.animate(to: camera)
+        self.googleMapsView?.camera = camera
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -236,6 +258,21 @@ extension ViewController: GMSAutocompleteViewControllerDelegate {
     
     func didUpdateAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
+    }
+}
+
+extension CLLocationCoordinate2D {
+    
+    func distanceTo(coordinate: CLLocationCoordinate2D) -> CLLocationDistance {
+        let thisLocation = CLLocation(latitude: self.latitude, longitude: self.longitude)
+        let otherLocation = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+        
+        //calculates distance in meters
+        let distanceInMeters = thisLocation.distance(from: otherLocation)
+        //converts to miles
+        let distanceInMiles = distanceInMeters * 0.00062137
+        //round to two decimal places
+        return Double(round(100 * distanceInMiles)/100)
     }
 }
 
