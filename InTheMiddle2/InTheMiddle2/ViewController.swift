@@ -142,6 +142,10 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
         print("Coordinate: \(coordinate)") //everytime you tap on the map, it will print its coordinate
     }
     
+    func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
+        print("Yay u did it.")
+    }
+    
     func didTapMyLocationButton(for mapView: GMSMapView) -> Bool {
         googleMapsView.isMyLocationEnabled = true
         googleMapsView.selectedMarker = nil
@@ -149,6 +153,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
     }
     
     @IBAction func openLocationA(_ sender: UIButton) {
+
         let autocompleteController = GMSAutocompleteViewController()
         autocompleteController.delegate = self
         
@@ -202,8 +207,12 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
         markerThreeQuarter.title = "Closer to Them: \(distanceBetweenAandThreeQuarter) miles away"
         markerThreeQuarter.map = googleMapsView
         
+        //draw path
+        
         print("The midway point is at coordinates: \(locationMid.latitude), \(locationMid.longitude).")
     }
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

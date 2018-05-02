@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>Find what&apos;s in between A and B!</string>
 	<key>NSLocationUsageDescription</key>
-	<string></string>
+	<string>Find what&apos;s in between A and B!</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
