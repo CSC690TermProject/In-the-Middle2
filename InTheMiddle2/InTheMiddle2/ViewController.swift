@@ -49,8 +49,6 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
 
         //map initialization
         let camera = GMSCameraPosition.camera(withLatitude: 37.74, longitude: -122.478, zoom: 10.25)
-//        let mapView = GMSMapView.map(withFrame: self.view.bounds, camera: camera)
-//        self.view = mapView
         minimalStyle = try! GMSMapStyle.init(contentsOfFileURL: Bundle.main.url(forResource: "modernminimal", withExtension: "json")!)
         self.googleMapsView?.mapStyle = minimalStyle
         
@@ -58,22 +56,8 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
         self.googleMapsView?.delegate = self
         self.view = googleMapsView
         self.googleMapsView?.isMyLocationEnabled = true
-        self.googleMapsView?.settings.myLocationButton = true
+//        self.googleMapsView?.settings.myLocationButton = true
         self.googleMapsView?.settings.zoomGestures = true
-        
-//        self.view.addSubview(googleMapsView)
-        
-//        let camera = GMSCameraPosition.camera(withLatitude: 37.74, longitude: -122.478, zoom: 10.25)
-//        let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
-//        minimalStyle = try! GMSMapStyle.init(contentsOfFileURL: Bundle.main.url(forResource: "modernminimal", withExtension: "json")!)
-//        mapView.mapStyle = minimalStyle
-//        mapView.camera = camera
-//        mapView.delegate = self
-//        mapView.isMyLocationEnabled = true
-//        mapView.settings.myLocationButton = true
-//        mapView.settings.zoomGestures = true
-//        view = mapView
-//        view.addSubview(mapView)
         
         //FIND button properties
         let dineButton = UIButton(frame: CGRect(x: 250, y: 600, width: 112.5, height: 56.25))
@@ -104,11 +88,13 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
         //bar properties
         navigationItem.title = "DINE in the MIDDLE"
         self.navigationController?.navigationBar.barStyle  = UIBarStyle.black
-        self.navigationController?.navigationBar.barTintColor   = .gray //UIColor(red: 153/255, green: 204/255, blue: 0/255, alpha: 1.0)
+        self.navigationController?.navigationBar.barTintColor   = UIColor(red: 166/255, green: 166/255, blue: 166/255, alpha: 1.0) //UIColor(red: 153/255, green: 204/255, blue: 0/255, alpha: 1.0)
         self.navigationController?.view.backgroundColor = .clear
         self.navigationController?.navigationBar.isTranslucent = true
         let navigationTitleFont = UIFont(name: "AvenirNextCondensed-DemiBoldItalic",  size: 27)!
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.font: navigationTitleFont]
+        
+        self.tabBarController?.tabBar.barTintColor = UIColor(red: 217/255, green: 217/255, blue: 217/255, alpha: 1.0)
     }
 
     //Location Manager delegates
@@ -153,7 +139,6 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
     }
     
     @IBAction func openLocationA(_ sender: UIButton) {
-
         let autocompleteController = GMSAutocompleteViewController()
         autocompleteController.delegate = self
         
@@ -196,23 +181,24 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
         
         //create a marker for the Midway point
         let markerMid = GMSMarker(position: locationMid)
+        markerMid.icon = GMSMarker.markerImage(with: .green)
         markerMid.title = "Midway Point: \(distanceBetweenAandMid) miles away"
         markerMid.map = googleMapsView
         //create a marker for the Quarter point
         let markerQuarter = GMSMarker(position: locationQuarter)
+        markerQuarter.icon = GMSMarker.markerImage(with: .green)
         markerQuarter.title = "Closer to Me: \(distanceBetweenAandQuarter) miles away"
         markerQuarter.map = googleMapsView
         //create a marker for the Three-Quarter point
         let markerThreeQuarter = GMSMarker(position: locationThreeQuarter)
+        markerThreeQuarter.icon = GMSMarker.markerImage(with: .green)
         markerThreeQuarter.title = "Closer to Them: \(distanceBetweenAandThreeQuarter) miles away"
         markerThreeQuarter.map = googleMapsView
         
-        //draw path
+        //draw path (eventually)
         
         print("The midway point is at coordinates: \(locationMid.latitude), \(locationMid.longitude).")
     }
-    
-    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
