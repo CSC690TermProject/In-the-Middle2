@@ -1,0 +1,6 @@
+framework module Pods_InTheMiddle2_InTheMiddle2UITests {
+  umbrella header "Pods-InTheMiddle2-InTheMiddle2UITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -10,6 +10,8 @@
 		810C0E90D3720945FC4E0882 /* Pods_InTheMiddle2_InTheMiddle2UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 125F7A8C93D909EE3E7D9300 /* Pods_InTheMiddle2_InTheMiddle2UITests.framework */; };
 		A3344D2560621B5E6E3A22D6 /* Pods_InTheMiddle2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 208B425C6A4918B3AB174231 /* Pods_InTheMiddle2Tests.framework */; };
 		ABA0E0F810654C94E113569C /* Pods_InTheMiddle2UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67DCA8A81EAB00197154E4E3 /* Pods_InTheMiddle2UITests.framework */; };
+		B71EA692209BAF1A00C247E3 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71EA691209BAF1A00C247E3 /* TableViewController.swift */; };
+		B7C23AB720A21C8200156C79 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C23AB620A21C8200156C79 /* TableViewCell.swift */; };
 		B7DB063420805D490054F285 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DB063320805D490054F285 /* AppDelegate.swift */; };
 		B7DB063620805D490054F285 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DB063520805D490054F285 /* ViewController.swift */; };
 		B7DB063920805D490054F285 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7DB063720805D490054F285 /* Main.storyboard */; };
@@ -51,6 +53,8 @@
 		6A2FC39ACFB5A1CCF54BF876 /* Pods-InTheMiddle2-InTheMiddle2Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InTheMiddle2-InTheMiddle2Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-InTheMiddle2-InTheMiddle2Tests/Pods-InTheMiddle2-InTheMiddle2Tests.release.xcconfig"; sourceTree = "<group>"; };
 		74BFFD84FDB3BEDDBCC60081 /* Pods-InTheMiddle2-InTheMiddle2UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InTheMiddle2-InTheMiddle2UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InTheMiddle2-InTheMiddle2UITests/Pods-InTheMiddle2-InTheMiddle2UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		9B632BD0252D54AB86D4ABA6 /* Pods-InTheMiddle2Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InTheMiddle2Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InTheMiddle2Tests/Pods-InTheMiddle2Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		B71EA691209BAF1A00C247E3 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		B7C23AB620A21C8200156C79 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		B7DB063020805D490054F285 /* InTheMiddle2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InTheMiddle2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7DB063320805D490054F285 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B7DB063520805D490054F285 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -161,6 +165,8 @@
 			children = (
 				B7DB063320805D490054F285 /* AppDelegate.swift */,
 				B7DB063520805D490054F285 /* ViewController.swift */,
+				B71EA691209BAF1A00C247E3 /* TableViewController.swift */,
+				B7C23AB620A21C8200156C79 /* TableViewCell.swift */,
 				B7DB063720805D490054F285 /* Main.storyboard */,
 				B7DB063D20805D490054F285 /* Assets.xcassets */,
 				B7E6CAAE208297BB00120A79 /* modernminimal.json */,
@@ -354,10 +360,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-InTheMiddle2-InTheMiddle2UITests/Pods-InTheMiddle2-InTheMiddle2UITests-resources.sh",
 				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -390,10 +398,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-InTheMiddle2/Pods-InTheMiddle2-resources.sh",
 				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -408,10 +418,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-InTheMiddle2-InTheMiddle2Tests/Pods-InTheMiddle2-InTheMiddle2Tests-resources.sh",
 				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -443,9 +455,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7C23AB720A21C8200156C79 /* TableViewCell.swift in Sources */,
 				B7DB063620805D490054F285 /* ViewController.swift in Sources */,
 				B7DB063C20805D490054F285 /* InTheMiddle2.xcdatamodeld in Sources */,
 				B7DB063420805D490054F285 /* AppDelegate.swift in Sources */,
+				B71EA692209BAF1A00C247E3 /* TableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
