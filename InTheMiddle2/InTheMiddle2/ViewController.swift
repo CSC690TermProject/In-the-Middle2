@@ -60,7 +60,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
         self.googleMapsView?.settings.zoomGestures = true
         
         //FIND button properties
-        let dineButton = UIButton(frame: CGRect(x: 250, y: 600, width: 112.5, height: 56.25))
+        let dineButton = UIButton(frame: CGRect(x: 250, y: 550, width: 112.5, height: 56.25))
         dineButton.backgroundColor = .gray
         dineButton.setTitle("FIND", for: .normal)
         dineButton.titleLabel?.font =  UIFont(name: "AvenirNextCondensed-DemiBold", size: 40)
@@ -69,7 +69,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
         self.view.addSubview(dineButton)
 
         //location field properties
-        self.locationA = UITextField(frame: CGRect(x: 20, y: 470, width: 300, height: 40))
+        self.locationA = UITextField(frame: CGRect(x: 20, y: 420, width: 300, height: 40))
         locationA?.placeholder = "Location A"
         locationA?.font = UIFont(name: "Avenir-Book", size: 25)
         locationA?.borderStyle = UITextBorderStyle.roundedRect
@@ -77,7 +77,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
         locationA?.alpha = 0.8
         self.view.addSubview(locationA!)
         
-        self.locationB = UITextField(frame: CGRect(x: 20, y: 525, width: 300, height: 40))
+        self.locationB = UITextField(frame: CGRect(x: 20, y: 475, width: 300, height: 40))
         locationB?.placeholder = "Location B"
         locationB?.font = UIFont(name: "Avenir-Book", size: 25)
         locationB?.borderStyle = UITextBorderStyle.roundedRect
