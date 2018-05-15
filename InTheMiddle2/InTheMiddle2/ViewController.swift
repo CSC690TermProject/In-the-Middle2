@@ -40,6 +40,12 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=8000&type=restaurant&key=AIzaSyCy4WJadzO6NS7VK2mbk10RcXT7JtvUI1o"
+        
+        downloadRestaurants(urlString: url) { (array) -> () in
+            print("Request complete.")
+        }
+        
         //set up LocationManager
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
@@ -198,6 +204,19 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
         //draw path (eventually)
         
         print("The midway point is at coordinates: \(locationMid.latitude), \(locationMid.longitude).")
+    }
+    
+    func downloadRestaurants(urlString: String, completionHanlder: (_ array: NSArray)-> ()){
+        let urlString = URL(string: urlString)
+        let request = URLRequest(url: urlString!)
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if error != nil {
+                print("Invalid json format.")
+            } else {
+                print(data!) //JSONSerialization
+            }
+        }
+        task.resume()
     }
 
     override func didReceiveMemoryWarning() {

@@ -29,6 +29,8 @@ class TableViewCell: UITableViewCell {
         
         contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-[name]-[address]-|", options: [], metrics: nil, views: viewsDict))
         
+        
+        
 //        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-[image(10)]", options: [], metrics: nil, views: viewsDict))
         
 //        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[rating]-|", options: [], metrics: nil, views: viewsDict))

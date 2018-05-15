@@ -4,6 +4,8 @@ platform :ios, '9.0'
 target 'InTheMiddle2' do
     pod 'GoogleMaps', '~> 2.6'
     pod 'GooglePlaces'
+    pod 'Alamofire', '~> 4.7'
+
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 
