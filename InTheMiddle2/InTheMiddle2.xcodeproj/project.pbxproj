@@ -207,6 +207,7 @@
 				B7DB062D20805D490054F285 /* Frameworks */,
 				B7DB062E20805D490054F285 /* Resources */,
 				4CE5A49A8EB99F1D3E0CE6AC /* [CP] Copy Pods Resources */,
+				AC05908FE97D0FFF24C5A894 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -226,6 +227,7 @@
 				B7DB064420805D490054F285 /* Frameworks */,
 				B7DB064520805D490054F285 /* Resources */,
 				DE6E56BF4F0431D7A470A473 /* [CP] Copy Pods Resources */,
+				A71E63511A8646640E2812C1 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -246,6 +248,7 @@
 				B7DB064F20805D490054F285 /* Frameworks */,
 				B7DB065020805D490054F285 /* Resources */,
 				36B891A6DC8D3A7BD5BD7351 /* [CP] Copy Pods Resources */,
+				5601ADCCEFAB90326D0A595F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -408,6 +411,60 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-InTheMiddle2/Pods-InTheMiddle2-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5601ADCCEFAB90326D0A595F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-InTheMiddle2-InTheMiddle2UITests/Pods-InTheMiddle2-InTheMiddle2UITests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-InTheMiddle2-InTheMiddle2UITests/Pods-InTheMiddle2-InTheMiddle2UITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A71E63511A8646640E2812C1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-InTheMiddle2-InTheMiddle2Tests/Pods-InTheMiddle2-InTheMiddle2Tests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-InTheMiddle2-InTheMiddle2Tests/Pods-InTheMiddle2-InTheMiddle2Tests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AC05908FE97D0FFF24C5A894 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-InTheMiddle2/Pods-InTheMiddle2-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-InTheMiddle2/Pods-InTheMiddle2-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		DE6E56BF4F0431D7A470A473 /* [CP] Copy Pods Resources */ = {
