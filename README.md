@@ -5,11 +5,11 @@ Term Project for CSC690 (Interactive Multimedia App Development (iOS)): a Swift 
 As mentioned in my most recent commit, I was able to get the network request of restaurants successfully; the json data gets printed onto the console when the user taps on the FIND button. Future work will include parsing the json data, representing it in a nice TableView and implement more Nice to Have Feautures.
 
 #### Mock-up/Wireframe:
-- 4/17/2018
+- 4/17/18
 
 ![alt text](https://preview.ibb.co/fttWsS/IMG_4917.jpg)
 
-- 5/17/2018
+- 5/17/18
 
 ![alt text](https://image.ibb.co/dKEu0d/i_OSWireframe51718.png)
 
@@ -21,7 +21,16 @@ As mentioned in my most recent commit, I was able to get the network request of 
 - Contains cells that has information about restaurants around the median point.
 - 'Map' button will take them back to the Map View.
 
+- 4/17/18
+
 ![alt text](https://image.ibb.co/iT47z7/Screen_Shot_2018_04_17_at_1_13_24_PM.png)
+
+-5/17/18
+
+![alt text](https://image.ibb.co/d7aZ0d/i_OSDemo517181.png)
+![alt text](https://image.ibb.co/dCEzYy/i_OSDemo517182.png)
+![alt text](https://image.ibb.co/bOuoRJ/i_OSDemo517183.png)
+![alt text](https://image.ibb.co/cyc8RJ/i_OSDemo517184.png)
 
 #### Must Have Feautures:
 1) User shall type two locations and then the median point is marked.
