@@ -8,7 +8,7 @@ As mentioned in my most recent commit, I was able to get the network request of 
 
 ![alt text](https://image.ibb.co/iT47z7/Screen_Shot_2018_04_17_at_1_13_24_PM.png)
 
--5/17/18
+- 5/17/18
 
 ![alt text](https://image.ibb.co/d7aZ0d/i_OSDemo517181.png)
 ![alt text](https://image.ibb.co/dCEzYy/i_OSDemo517182.png)
