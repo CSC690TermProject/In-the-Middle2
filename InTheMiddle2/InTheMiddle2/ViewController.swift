@@ -40,12 +40,6 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=8000&type=restaurant&key=AIzaSyCy4WJadzO6NS7VK2mbk10RcXT7JtvUI1o"
-        
-        downloadRestaurants(urlString: url) { (array) -> () in
-            print("Request complete.")
-        }
-        
         //set up LocationManager
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
@@ -138,11 +132,11 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
         print("Yay u did it.")
     }
     
-    func didTapMyLocationButton(for mapView: GMSMapView) -> Bool {
-        googleMapsView.isMyLocationEnabled = true
-        googleMapsView.selectedMarker = nil
-        return false
-    }
+//    func didTapMyLocationButton(for mapView: GMSMapView) -> Bool {
+//        googleMapsView.isMyLocationEnabled = true
+//        googleMapsView.selectedMarker = nil
+//        return false
+//    }
     
     @IBAction func openLocationA(_ sender: UIButton) {
         let autocompleteController = GMSAutocompleteViewController()
@@ -171,6 +165,9 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
         locationQuarter = GMSGeometryInterpolate(locationStart, locationEnd, 0.25)
         //stores the coordinates at the three-quarter mark ("Closer to Them")
         locationThreeQuarter = GMSGeometryInterpolate(locationStart, locationEnd, 0.75)
+        
+        //pass midway coordinate to function that retrieves restaurant
+        fetchPlacesNearCoordinate(coordinate: locationMid)
         
         //clear the map of all markers
         googleMapsView.clear()
@@ -206,17 +203,31 @@ class ViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDel
         print("The midway point is at coordinates: \(locationMid.latitude), \(locationMid.longitude).")
     }
     
-    func downloadRestaurants(urlString: String, completionHanlder: (_ array: NSArray)-> ()){
-        let urlString = URL(string: urlString)
-        let request = URLRequest(url: urlString!)
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            if error != nil {
-                print("Invalid json format.")
-            } else {
-                print(data!) //JSONSerialization
+    func fetchPlacesNearCoordinate(coordinate: CLLocationCoordinate2D){
+        let urlString :URLRequest = URLRequest.init(url: URL.init(string: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(coordinate.latitude),\(coordinate.longitude)&radius=8000&type=restaurant&key=AIzaSyCy4WJadzO6NS7VK2mbk10RcXT7JtvUI1o")!)
+        
+        print(urlString)
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        
+        let placesTask = URLSession.shared.dataTask(with: urlString) {data, response, err in guard let data = data, err == nil else {
+            print("error ==>\(err)")
+            return
+            }
+            
+            let responsestring = String(data: data, encoding: .utf8)
+            
+            do {
+                let jsondata1 = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as! NSDictionary
+                print("Final data Convert to JSON =>\(jsondata1)")
+                
+                let results = jsondata1["results"] as! NSArray
+                print("Results ==> \(results)")
+            }
+            catch{
+                print("error ==>\(err)")
             }
         }
-        task.resume()
+        placesTask.resume()
     }
 
     override func didReceiveMemoryWarning() {
@@ -287,6 +298,38 @@ extension CLLocationCoordinate2D {
         let distanceInMiles = distanceInMeters * 0.00062137
         //round to two decimal places
         return Double(round(100 * distanceInMiles)/100)
+    }
+}
+
+extension ViewController: UITableViewDataSource{
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        tableView.rowHeight = UITableViewAutomaticDimension
+        
+        let cell = TableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "restaurantCell")
+        
+        cell.labRestaurant.text = "restaurant"
+        cell.labRestaurant.font = UIFont(name: "Avenir", size: 22)
+        cell.labAddress.numberOfLines = 0
+        cell.labRestaurant.lineBreakMode = NSLineBreakMode.byWordWrapping
+        
+        cell.labAddress.text = "address"
+        cell.labAddress.font = UIFont(name: "Avenir", size: 17)
+        cell.labAddress.contentMode = .scaleToFill
+        cell.labAddress.numberOfLines = 0
+        cell.labAddress.lineBreakMode = NSLineBreakMode.byWordWrapping
+        cell.labAddress.widthAnchor.constraint(equalToConstant: 400.0).isActive = true
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
     }
 }
 

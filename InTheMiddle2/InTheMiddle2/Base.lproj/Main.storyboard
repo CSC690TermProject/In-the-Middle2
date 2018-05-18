@@ -81,6 +81,7 @@
         <!--Table View Controller-->
         <scene sceneID="k9r-aK-vyg">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="q5D-ar-Qy6" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="VgR-Pa-rHo" userLabel="Table View Controller" customClass="TableViewController" customModule="InTheMiddle2" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="2Dg-3V-FoQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -103,7 +104,6 @@
                     </tableView>
                     <tabBarItem key="tabBarItem" systemItem="more" id="YaQ-Ha-d9h"/>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="q5D-ar-Qy6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="249" y="271"/>
         </scene>
