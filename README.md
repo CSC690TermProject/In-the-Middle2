@@ -5,11 +5,11 @@ Term Project for CSC690 (Interactive Multimedia App Development (iOS)): a Swift 
 As mentioned in my most recent commit, I was able to get the network request of restaurants successfully; the json data gets printed onto the console when the user taps on the FIND button. Future work will include parsing the json data, representing it in a nice TableView and implement more Nice to Have Feautures.
 
 #### Mock-up/Wireframe:
-4/17/2018
+- 4/17/2018
 ![alt text](https://preview.ibb.co/fttWsS/IMG_4917.jpg)
 
-5/17/2018
-![alt text](https://thumb.ibb.co/gHh3ty/i_OSWireframe51718.png)
+- 5/17/2018
+![alt text](https://image.ibb.co/dKEu0d/i_OSWireframe51718.png)
 
 ##### Map View:
 - Contains two text fields to contain locations A and B.
