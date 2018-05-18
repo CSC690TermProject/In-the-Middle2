@@ -6,9 +6,11 @@ As mentioned in my most recent commit, I was able to get the network request of 
 
 #### Mock-up/Wireframe:
 - 4/17/2018
+
 ![alt text](https://preview.ibb.co/fttWsS/IMG_4917.jpg)
 
 - 5/17/2018
+
 ![alt text](https://image.ibb.co/dKEu0d/i_OSWireframe51718.png)
 
 ##### Map View:
@@ -19,7 +21,6 @@ As mentioned in my most recent commit, I was able to get the network request of 
 - Contains cells that has information about restaurants around the median point.
 - 'Map' button will take them back to the Map View.
 
-4/17/2018
 ![alt text](https://image.ibb.co/iT47z7/Screen_Shot_2018_04_17_at_1_13_24_PM.png)
 
 #### Must Have Feautures:
